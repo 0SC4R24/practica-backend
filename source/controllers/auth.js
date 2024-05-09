@@ -24,7 +24,7 @@ const registerCtrl = async (req, res) => {
 const loginCtrl = async (req, res) => {
     try {
         req = matchedData(req)
-        let user = await usersModel.findOne({email: req.email}).select("password name role email city interests age avatar canReceiveOffers")
+        let user = await usersModel.findOne({email: req.email}).select("password name role email")
 
         if (!user)
         {
@@ -59,6 +59,11 @@ const getUsers = async (req, res) => {
         if (req.query.role) {
             const role = req.query.role
             data = data.filter(user => user.role === role)
+        }
+
+        if (req.query.offers) {
+            const offer = req.query.offers
+            data = data.filter(user => user.canReceiveOffers.toString() === offer)
         }
 
         res.send(data)

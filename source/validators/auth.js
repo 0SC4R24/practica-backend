@@ -8,7 +8,7 @@ const validatorRegister = [
     check("age").exists().notEmpty().isNumeric(),
     check("city").exists().notEmpty(),
     check("interests").exists().notEmpty().isArray(),
-    check("role").exists().notEmpty().isIn(["user", "commerce", "admin"]),
+    // check("role").exists().notEmpty().isIn(["user", "commerce", "admin"]),
     check("avatar").exists().notEmpty(),
     check("canReceiveOffers").exists().notEmpty().isBoolean(),
     (req, res, next) => {

@@ -4,15 +4,15 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-    "name": "test24",
-    "email": "test24@test.com",
-    "password": "test12345",
-    "age": 21,
-    "city": "Madrid",
-    "interests": ["sports", "music"],
+    "name": "aaa",
+    "email": "aaa@test.com",
+    "password": "aaa12345",
+    "age": 28,
+    "city": "Valencia",
+    "interests": ["music"],
     "avatar": "https://github.com/0SC4R24.png",
     "role": "user",
-    "canReceiveOffers": true
+    "canReceiveOffers": false
 }
 
 ### GET all users
@@ -22,6 +22,10 @@ GET http://localhost:3000/api/auth/users
 ### GET user by role
 
 GET http://localhost:3000/api/auth/users?role=admin
+
+### GET user by offers
+
+GET http://localhost:3000/api/auth/users?offers=false
 
 ### GET user by id
 
@@ -37,4 +41,6 @@ Content-Type: application/json
     "password": "test12345"
 }
 
-###
+### GET user by id
+
+GET http://localhost:3000/api/auth/users/6636534eb628cf9f61033667
