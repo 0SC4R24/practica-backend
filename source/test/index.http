@@ -35,7 +35,7 @@ GET http://localhost:3000/api/auth/users?offers=false
 
 ### GET user by id
 
-GET http://localhost:3000/api/auth/users/6633d48d409f04c8d12a5935
+GET http://localhost:3000/api/auth/user/6633d48d409f04c8d12a5935
 
 ### POST login user
 
@@ -49,7 +49,7 @@ Content-Type: application/json
 
 ### GET user by id
 
-GET http://localhost:3000/api/auth/users/6636534eb628cf9f61033667
+GET http://localhost:3000/api/auth/user/663d846c57aa4ae84b7a6245
 
 ### POST register admin
 
@@ -83,4 +83,32 @@ Authorization: Bearer {{tokenAdmin}}
     "address": "Valencia",
     "cif": "A12345678",
     "phone": "123456789"
+}
+
+###
+
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@test.com",
+    "password": "admin12345"
+}
+
+### UPDATE user
+
+PUT http://localhost:3000/api/auth/user/663d846c57aa4ae84b7a6245
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNkODQ2YzU3YWE0YWU4NGI3YTYyNDUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUzMzM1NDAsImV4cCI6MTcxNTQxOTk0MH0.5kZHh8MTuYi9KdKFGEghk01lzjESwciTSqJ7JAT5WR8
+
+{
+    "name": "admin121",
+    "email": "admin1@test.com",
+    "password": "admin@12345",
+    "age": 29,
+    "city": "Toledo",
+    "interests": ["music"],
+    "role": "admin",
+    "avatar": "https://github.com/0SC4R24.png",
+    "canReceiveOffers": true
 }

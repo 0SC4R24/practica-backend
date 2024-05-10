@@ -112,10 +112,37 @@ const getUser = async (req, res) => {
     }
 }
 
+const updateUser = async (req, res) => {
+    console.log("updateUser")
+    try {
+        const {id, body} = matchedData(req)
+        console.log("id: ", id)
+        console.log("body: ", body)
+        const data = await usersModel.findByIdAndUpdate(id, body)
+        res.send(data)
+    } catch (error) {
+        console.error("Error updateUser: ", error)
+        handleHttpError(res, "ERROR_UPDATE_USER", 403)
+    }
+}
+
+const deleteUser = async (req, res) => {
+    try {
+        const {id} = matchedData(req)
+        const data = await usersModel.findByIdAndDelete(id)
+        res.send(data)
+    } catch (error) {
+        console.error("Error deleteUser: ", error)
+        handleHttpError(res, "ERROR_DELETE_USER", 403)
+    }
+}
+
 module.exports = {
     registerCtrl,
     registerCommerce,
     loginCtrl,
     getUsers,
-    getUser
+    getUser,
+    updateUser,
+    deleteUser
 }
