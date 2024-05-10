@@ -1,20 +1,20 @@
 const express = require("express")
 const cors = require("cors")
+const router = require("./routes")
 const dbConnect = require("./config/mongo")
+
 require("dotenv").config()
+dbConnect()
 
 const app = express()
-
-app.use(cors())
-app.use(express.json())
-app.use("/api", require("./routes"))
-
 const port = process.env.PORT || 3000
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`)
-})
+app.use(express.json())
+app.use(cors())
+app.use("/api", router)
 
-dbConnect()
+app.listen(port, () => {
+    console.log(`[*] Server is listening on port ${port}`)
+})
 
 module.exports = app

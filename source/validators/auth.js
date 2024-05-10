@@ -8,9 +8,22 @@ const validatorRegister = [
     check("age").exists().notEmpty().isNumeric(),
     check("city").exists().notEmpty(),
     check("interests").exists().notEmpty().isArray(),
-    // check("role").exists().notEmpty().isIn(["user", "commerce", "admin"]),
+    check("role").exists().notEmpty().isIn(["admin", "user"]),
     check("avatar").exists().notEmpty(),
     check("canReceiveOffers").exists().notEmpty().isBoolean(),
+    (req, res, next) => {
+        return validateResults(req, res, next)
+    }
+]
+
+const validatorRegisterCommerce = [
+    check("email").exists().notEmpty().isEmail(),
+    check("password").exists().notEmpty().isLength({min: 8, max: 64}),
+    check("name").exists().notEmpty().isLength({min: 3, max: 99}),
+    check("description").exists().notEmpty().isLength({min: 3, max: 99}),
+    check("address").exists().notEmpty().isLength({min: 3, max: 99}),
+    check("cif").exists().notEmpty().isLength({min: 3, max: 99}),
+    check("phone").exists().notEmpty().isLength({min: 3, max: 99}),
     (req, res, next) => {
         return validateResults(req, res, next)
     }
@@ -32,7 +45,7 @@ const validatorGetUser = [
 ]
 
 const validatorGetUsers = [
-    check("role").optional().isIn(["user", "commerce", "admin"]),
+    check("role").optional().isIn(["user", "admin"]),
     (req, res, next) => {
         return validateResults(req, res, next)
     }
@@ -40,6 +53,7 @@ const validatorGetUsers = [
 
 module.exports = {
     validatorRegister,
+    validatorRegisterCommerce,
     validatorLogin,
     validatorGetUser,
     validatorGetUsers

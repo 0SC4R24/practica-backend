@@ -18,7 +18,7 @@ const authMiddleware = async (req, res, next) => {
         }
 
         const query = {
-            _id: dataToken.id
+            _id: dataToken._id
         }
 
         const user = await usersModel.findOne(query)

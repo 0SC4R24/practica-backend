@@ -2,7 +2,7 @@ const {matchedData} = require("express-validator")
 const {tokenSign} = require("../utils/handleJwt")
 const {encrypt, compare} = require("../utils/handlePassword")
 const {handleHttpError} = require("../utils/handleError")
-const {usersModel} = require("../models")
+const {usersModel, commercesModel} = require("../models")
 
 const registerCtrl = async (req, res) => {
     try {
@@ -18,6 +18,23 @@ const registerCtrl = async (req, res) => {
     } catch (error) {
         console.log("Error registerCtrl: ", error)
         handleHttpError(res, "ERROR_REGISTER_USER")
+    }
+}
+
+const registerCommerce = async (req, res) => {
+    try {
+        req = matchedData(req)
+        const password = await encrypt(req.password)
+        const body = {...req, password}
+        const dataCommerce = await commercesModel.create(body)
+        dataCommerce.set("password", undefined, {strict: false})
+
+        const data = {token: await tokenSign(dataCommerce)}
+
+        res.send(data)
+    } catch (error) {
+        console.log("Error registerCommerce: ", error)
+        handleHttpError(res, "ERROR_REGISTER_COMMERCE")
     }
 }
 
@@ -66,6 +83,11 @@ const getUsers = async (req, res) => {
             data = data.filter(user => user.canReceiveOffers.toString() === offer)
         }
 
+        if (req.query.city) {
+            const city = req.query.city
+            data = data.filter(user => user.city === city)
+        }
+
         res.send(data)
     } catch (error) {
         handleHttpError(res, "ERROR_GET_USERS", 403)
@@ -92,6 +114,7 @@ const getUser = async (req, res) => {
 
 module.exports = {
     registerCtrl,
+    registerCommerce,
     loginCtrl,
     getUsers,
     getUser

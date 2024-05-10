@@ -85,3 +85,7 @@ El usuario puede ser anónimo (consultas) o estar registrado para recibir oferta
     con los requisitos mínimos.
 
     5.- Se valorarán muy positivamente mejoras funcionales y/o técnicas a las propuestas.
+
+## AUTORES
+
+    - [Oscar Viudez](https://github.com/0SC4R24)

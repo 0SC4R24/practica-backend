@@ -1,17 +1,19 @@
+@tokenAdmin = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjM2NTM0ZWI2MjhjZjlmNjEwMzM2NjciLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUzMDM3MTUsImV4cCI6MTcxNTM5MDExNX0.zbrVPJGKh9vuiF5xdL-K-pymsvEVPsgFLsP8KwBX8lM
+
 ### POST register user
 
-POST http://localhost:3000/api/auth/register
+POST http://localhost:3000/api/auth/register/user
 Content-Type: application/json
 
 {
-    "name": "aaa",
-    "email": "aaa@test.com",
-    "password": "aaa12345",
+    "name": "bbb",
+    "email": "bbb@test.com",
+    "password": "bbb12345",
     "age": 28,
     "city": "Valencia",
     "interests": ["music"],
-    "avatar": "https://github.com/0SC4R24.png",
     "role": "user",
+    "avatar": "https://github.com/0SC4R24.png",
     "canReceiveOffers": false
 }
 
@@ -21,7 +23,11 @@ GET http://localhost:3000/api/auth/users
 
 ### GET user by role
 
-GET http://localhost:3000/api/auth/users?role=admin
+GET http://localhost:3000/api/auth/users?role=user
+
+### GET user by city
+
+GET http://localhost:3000/api/auth/users?city=Valencia
 
 ### GET user by offers
 
@@ -44,3 +50,37 @@ Content-Type: application/json
 ### GET user by id
 
 GET http://localhost:3000/api/auth/users/6636534eb628cf9f61033667
+
+### POST register admin
+
+POST http://localhost:3000/api/auth/register/admin
+Content-Type: application/json
+Authorization: Bearer {{tokenAdmin}}
+
+{
+    "name": "admin12",
+    "email": "admin@test.com",
+    "password": "admin12345",
+    "age": 28,
+    "city": "Barcelona",
+    "interests": ["sports", "music"],
+    "role": "admin",
+    "avatar": "https://github.com/0SC4R24.png",
+    "canReceiveOffers": false
+}
+
+### POST register commerce
+
+POST http://localhost:3000/api/auth/register/commerce
+Content-Type: application/json
+Authorization: Bearer {{tokenAdmin}}
+
+{
+    "email": "comercio@test.com",
+    "password": "comercio12345",
+    "name": "comercio",
+    "description": "comercio de ropa",
+    "address": "Valencia",
+    "cif": "A12345678",
+    "phone": "123456789"
+}

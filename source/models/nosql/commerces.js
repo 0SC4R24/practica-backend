@@ -1,45 +1,35 @@
 const mongoose = require("mongoose")
 const mongooseDelete = require("mongoose-delete")
 
-const UserScheme = new mongoose.Schema(
+const CommerceSheme = new mongoose.Schema(
     {
         email: {
             type: String,
             required: true,
             unique: true
         },
-        name: {
-            type: String,
-            required: true
-        },
         password: {
             type: String,
             required: true
         },
-        role: {
-            type: String,
-            enum: ["user", "commerce", "admin"],
-            default: "user",
-            required: true
-        },
-        age: {
-            type: Number,
-            required: true
-        },
-        city: {
+        name: {
             type: String,
             required: true
         },
-        interests: {
-            type: [String],
-            required: true
-        },
-        avatar: {
+        description: {
             type: String,
             required: true
         },
-        canReceiveOffers: {
-            type: Boolean,
+        address: {
+            type: String,
+            required: true
+        },
+        cif: {
+            type: String,
+            required: true
+        },
+        phone: {
+            type: String,
             required: true
         }
     },
@@ -49,5 +39,5 @@ const UserScheme = new mongoose.Schema(
     }
 )
 
-UserScheme.plugin(mongooseDelete, {overrideMethods: "all"})
-module.exports = mongoose.model("User", UserScheme)
+CommerceSheme.plugin(mongooseDelete, {overrideMethods: "all"})
+module.exports = mongoose.model("Commerce", CommerceSheme)
