@@ -88,4 +88,4 @@ El usuario puede ser anónimo (consultas) o estar registrado para recibir oferta
 
 ## AUTORES
 
-    - [Oscar Viudez](https://github.com/0SC4R24)
+- [Oscar Viudez](https://github.com/0SC4R24)
