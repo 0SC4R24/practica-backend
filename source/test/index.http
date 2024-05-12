@@ -1,4 +1,5 @@
-@tokenAdmin = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjM2NTM0ZWI2MjhjZjlmNjEwMzM2NjciLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUzMDM3MTUsImV4cCI6MTcxNTM5MDExNX0.zbrVPJGKh9vuiF5xdL-K-pymsvEVPsgFLsP8KwBX8lM
+@tokenAdmin = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjM2NTM0ZWI2MjhjZjlmNjEwMzM2NjciLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTU0ODE3NDYsImV4cCI6MTcxNTU2ODE0Nn0.ppgij_8woGLiSIHcbObRBEdwU_YyVvYIp-vnd-8mi_Y
+@tokenCommerce = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQwMmQxNGE5OTkyYmVmZjI3NjA4MTIiLCJpYXQiOjE3MTU0ODE4NzYsImV4cCI6MTcxNTU2ODI3Nn0.0ie0-ZRfGu9ty2JehenC9RNswA-nsAvEa-kD5ne-G6w
 
 ### POST register user
 
@@ -99,7 +100,7 @@ Content-Type: application/json
 
 PUT http://localhost:3000/api/auth/user/663d846c57aa4ae84b7a6245
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNkODQ2YzU3YWE0YWU4NGI3YTYyNDUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTUzMzM1NDAsImV4cCI6MTcxNTQxOTk0MH0.5kZHh8MTuYi9KdKFGEghk01lzjESwciTSqJ7JAT5WR8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNkODQ2YzU3YWE0YWU4NGI3YTYyNDUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTU0NjAzMjAsImV4cCI6MTcxNTU0NjcyMH0.SyMfzmqKFzriurZRMjA4Je4cSlB9olJtCKPyTZTF-1A
 
 {
     "name": "admin121",
@@ -112,3 +113,46 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNkODQ2Y
     "avatar": "https://github.com/0SC4R24.png",
     "canReceiveOffers": true
 }
+
+### POST log in with new user
+
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin1@test.com",
+    "password": "admin@12345"
+}
+
+### DELETE user
+
+DELETE http://localhost:3000/api/auth/user/663d846c57aa4ae84b7a6245
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNkODQ2YzU3YWE0YWU4NGI3YTYyNDUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTU0NjAzMjAsImV4cCI6MTcxNTU0NjcyMH0.SyMfzmqKFzriurZRMjA4Je4cSlB9olJtCKPyTZTF-1A
+
+### POST register commerce
+
+POST http://localhost:3000/api/auth/register/commerce
+Content-Type: application/json
+Authorization: Bearer {{tokenAdmin}}
+
+{
+    "email": "info@mercadona.es",
+    "password": "mercadona12345",
+    "name": "Mercadona",
+    "description": "Supermercado",
+    "address": "Valencia",
+    "cif": "A12345678",
+    "phone": "123456789"
+}
+
+### POST log in with commerce
+
+POST http://localhost:3000/api/auth/login/commerce
+Content-Type: application/json
+
+{
+    "email": "info@mercadona.es",
+    "password": "mercadona12345"
+}
+
+

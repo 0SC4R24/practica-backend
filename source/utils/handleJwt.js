@@ -13,6 +13,19 @@ const tokenSign = async (user) => {
     )
 }
 
+const tokenSignCommerce = async (commerce) => {
+    return jwt.sign(
+        {
+            _id: commerce._id,
+            cif: commerce.cif
+        },
+        process.env.JWT_SECRET,
+        {
+            expiresIn: "1d"
+        }
+    )
+}
+
 const verifyToken = async (tokenJwt) => {
     try {
         return jwt.verify(tokenJwt, process.env.JWT_SECRET)
@@ -23,5 +36,6 @@ const verifyToken = async (tokenJwt) => {
 
 module.exports = {
     tokenSign,
+    tokenSignCommerce,
     verifyToken
 }

@@ -1,5 +1,5 @@
 const {matchedData} = require("express-validator")
-const {tokenSign} = require("../utils/handleJwt")
+const {tokenSign, tokenSignCommerce} = require("../utils/handleJwt")
 const {encrypt, compare} = require("../utils/handlePassword")
 const {handleHttpError} = require("../utils/handleError")
 const {usersModel, commercesModel} = require("../models")
@@ -69,6 +69,37 @@ const loginCtrl = async (req, res) => {
     }
 }
 
+const loginCommerce = async (req, res) => {
+    try {
+        req = matchedData(req)
+        let user = await commercesModel.findOne({email: req.email}).select("password name cif email")
+
+        if (!user)
+        {
+            handleHttpError(res, "COMMERCE_NOT_FOUND", 404)
+            return
+        }
+
+        const hash = user.password
+        const check = await compare(req.password, hash)
+
+        if (!check)
+        {
+            handleHttpError(res, "INVALID_PASSWORD", 401)
+            return
+        }
+
+        user.set("password", undefined, {strict: false})
+
+        const data = {token: await tokenSignCommerce(user)}
+
+        res.send(data)
+    } catch (error) {
+        console.error("Error loginCommerce: ", error)
+        handleHttpError(res, "ERROR_LOGIN_COMMERCE")
+    }
+}
+
 const getUsers = async (req, res) => {
     try {
         let data = await usersModel.find({})
@@ -113,12 +144,26 @@ const getUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-    console.log("updateUser")
     try {
-        const {id, body} = matchedData(req)
-        console.log("id: ", id)
-        console.log("body: ", body)
-        const data = await usersModel.findByIdAndUpdate(id, body)
+        const user_id = req.user.id
+        req = matchedData(req)
+
+        if (req.id !== user_id)
+        {
+            handleHttpError(res, "NOT_ALLOWED", 401)
+            return
+        }
+
+        req.password = await encrypt(req.password)
+
+        const data = await usersModel.findByIdAndUpdate(req.id, req)
+
+        if (!data)
+        {
+            handleHttpError(res, "USER_NOT_FOUND", 404)
+            return
+        }
+
         res.send(data)
     } catch (error) {
         console.error("Error updateUser: ", error)
@@ -128,8 +173,23 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     try {
-        const {id} = matchedData(req)
-        const data = await usersModel.findByIdAndDelete(id)
+        const user_id = req.user.id
+        req = matchedData(req)
+
+        if (req.id !== user_id)
+        {
+            handleHttpError(res, "NOT_ALLOWED", 401)
+            return
+        }
+
+        const data = await usersModel.findByIdAndDelete(req.id)
+
+        if (!data)
+        {
+            handleHttpError(res, "USER_NOT_FOUND", 404)
+            return
+        }
+
         res.send(data)
     } catch (error) {
         console.error("Error deleteUser: ", error)
@@ -141,6 +201,7 @@ module.exports = {
     registerCtrl,
     registerCommerce,
     loginCtrl,
+    loginCommerce,
     getUsers,
     getUser,
     updateUser,

@@ -3,7 +3,6 @@ const {verifyToken} = require("../utils/handleJwt")
 const {usersModel} = require("../models")
 
 const authMiddleware = async (req, res, next) => {
-    console.log("authMiddleware")
     try {
         if (!req.headers.authorization) {
             handleHttpError(res, "NOT_TOKEN", 401)
@@ -22,10 +21,7 @@ const authMiddleware = async (req, res, next) => {
             _id: dataToken._id
         }
 
-        const user = await usersModel.findOne(query)
-        req.user = user
-
-        console.log("authMiddleware user: ", user)
+        req.user = await usersModel.findOne(query)
 
         next()
     } catch (error) {

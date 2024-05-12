@@ -51,10 +51,35 @@ const validatorGetUsers = [
     }
 ]
 
+const validatorUpdate = [
+    check("id").exists().notEmpty().isMongoId(),
+    check("name").exists().notEmpty().isLength({min: 3, max: 99}),
+    check("email").exists().notEmpty().isEmail(),
+    check("password").exists().notEmpty().isLength({min: 8, max: 64}),
+    check("age").exists().notEmpty().isNumeric(),
+    check("city").exists().notEmpty(),
+    check("interests").exists().notEmpty().isArray(),
+    check("role").exists().notEmpty().isIn(["admin", "user"]),
+    check("avatar").exists().notEmpty(),
+    check("canReceiveOffers").exists().notEmpty().isBoolean(),
+    (req, res, next) => {
+        return validateResults(req, res, next)
+    }
+]
+
+const validatorDelete = [
+    check("id").exists().notEmpty().isMongoId(),
+    (req, res, next) => {
+        return validateResults(req, res, next)
+    }
+]
+
 module.exports = {
     validatorRegister,
     validatorRegisterCommerce,
     validatorLogin,
     validatorGetUser,
-    validatorGetUsers
+    validatorGetUsers,
+    validatorUpdate,
+    validatorDelete
 }
