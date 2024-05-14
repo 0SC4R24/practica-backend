@@ -2,13 +2,15 @@ const {handleHttpError} = require("../utils/handleError");
 
 const checkRole = (role) => (req, res, next) => {
     try {
-        const {user} = req
-        const userRole = user.role
-        const checkValueRole = role.includes(userRole)
+        if (!req.commerce) {
+            const {user} = req
+            const userRole = user.role
+            const checkValueRole = role.includes(userRole)
 
-        if (!checkValueRole) {
-            handleHttpError(res, "NOT_ALLOWED", 401)
-            return
+            if (!checkValueRole) {
+                handleHttpError(res, "NOT_ALLOWED", 401)
+                return
+            }
         }
 
         next()

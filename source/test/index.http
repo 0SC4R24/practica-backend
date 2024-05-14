@@ -1,5 +1,6 @@
-@tokenAdmin = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjM2NTM0ZWI2MjhjZjlmNjEwMzM2NjciLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTU0ODE3NDYsImV4cCI6MTcxNTU2ODE0Nn0.ppgij_8woGLiSIHcbObRBEdwU_YyVvYIp-vnd-8mi_Y
-@tokenCommerce = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQwMmQxNGE5OTkyYmVmZjI3NjA4MTIiLCJpYXQiOjE3MTU0ODE4NzYsImV4cCI6MTcxNTU2ODI3Nn0.0ie0-ZRfGu9ty2JehenC9RNswA-nsAvEa-kD5ne-G6w
+@tokenAdmin = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjM2NTM0ZWI2MjhjZjlmNjEwMzM2NjciLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTU2MjE0OTQsImV4cCI6MTcxNTcwNzg5NH0.AYloqxYfIm4-FhIjLdhsIPx4PgLeV-qlunkq0LwSm88
+@tokenCommerce = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQwMmQxNGE5OTkyYmVmZjI3NjA4MTIiLCJjaWYiOiJBMTIzNDU2NzgiLCJpYXQiOjE3MTU2MjE0NzIsImV4cCI6MTcxNTcwNzg3Mn0.7X8xdHrCHY_roQ9sl0h601zAgT05TFbUZC31tZT-cJc
+@tokenUser = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNjMjFkNzg3ZTdjMzVlYTViMmM1ZmMiLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNTYyMTU1MywiZXhwIjoxNzE1NzA3OTUzfQ.1l8fGjiDtDEH1vV81Uo13FHaGS76MxZywNNEfAGFEVA
 
 ### POST register user
 
@@ -7,15 +8,15 @@ POST http://localhost:3000/api/auth/register/user
 Content-Type: application/json
 
 {
-    "name": "bbb",
-    "email": "bbb@test.com",
-    "password": "bbb12345",
-    "age": 28,
-    "city": "Valencia",
-    "interests": ["music"],
-    "role": "user",
-    "avatar": "https://github.com/0SC4R24.png",
-    "canReceiveOffers": false
+  "name": "bbb",
+  "email": "bbb@test.com",
+  "password": "bbb12345",
+  "age": 28,
+  "city": "Valencia",
+  "interests": ["music"],
+  "role": "user",
+  "avatar": "https://github.com/0SC4R24.png",
+  "canReceiveOffers": false
 }
 
 ### GET all users
@@ -44,8 +45,8 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "test24@test.com",
-    "password": "test12345"
+  "email": "test24@test.com",
+  "password": "test12345"
 }
 
 ### GET user by id
@@ -59,15 +60,15 @@ Content-Type: application/json
 Authorization: Bearer {{tokenAdmin}}
 
 {
-    "name": "admin12",
-    "email": "admin@test.com",
-    "password": "admin12345",
-    "age": 28,
-    "city": "Barcelona",
-    "interests": ["sports", "music"],
-    "role": "admin",
-    "avatar": "https://github.com/0SC4R24.png",
-    "canReceiveOffers": false
+  "name": "admin12",
+  "email": "admin@test.com",
+  "password": "admin12345",
+  "age": 28,
+  "city": "Barcelona",
+  "interests": ["sports", "music"],
+  "role": "admin",
+  "avatar": "https://github.com/0SC4R24.png",
+  "canReceiveOffers": false
 }
 
 ### POST register commerce
@@ -77,13 +78,13 @@ Content-Type: application/json
 Authorization: Bearer {{tokenAdmin}}
 
 {
-    "email": "comercio@test.com",
-    "password": "comercio12345",
-    "name": "comercio",
-    "description": "comercio de ropa",
-    "address": "Valencia",
-    "cif": "A12345678",
-    "phone": "123456789"
+  "email": "comercio@test.com",
+  "password": "comercio12345",
+  "name": "comercio",
+  "description": "comercio de ropa",
+  "address": "Valencia",
+  "cif": "A12345678",
+  "phone": "123456789"
 }
 
 ###
@@ -92,26 +93,26 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "admin@test.com",
-    "password": "admin12345"
+  "email": "aaa@test.com",
+  "password": "aaa12345"
 }
 
 ### UPDATE user
 
 PUT http://localhost:3000/api/auth/user/663d846c57aa4ae84b7a6245
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNkODQ2YzU3YWE0YWU4NGI3YTYyNDUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTU0NjAzMjAsImV4cCI6MTcxNTU0NjcyMH0.SyMfzmqKFzriurZRMjA4Je4cSlB9olJtCKPyTZTF-1A
+Authorization: Bearer {{tokenAdmin}}
 
 {
-    "name": "admin121",
-    "email": "admin1@test.com",
-    "password": "admin@12345",
-    "age": 29,
-    "city": "Toledo",
-    "interests": ["music"],
-    "role": "admin",
-    "avatar": "https://github.com/0SC4R24.png",
-    "canReceiveOffers": true
+  "name": "admin121",
+  "email": "admin1@test.com",
+  "password": "admin@12345",
+  "age": 29,
+  "city": "Toledo",
+  "interests": ["music"],
+  "role": "admin",
+  "avatar": "https://github.com/0SC4R24.png",
+  "canReceiveOffers": true
 }
 
 ### POST log in with new user
@@ -120,14 +121,14 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "admin1@test.com",
-    "password": "admin@12345"
+  "email": "admin1@test.com",
+  "password": "admin@12345"
 }
 
 ### DELETE user
 
 DELETE http://localhost:3000/api/auth/user/663d846c57aa4ae84b7a6245
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNkODQ2YzU3YWE0YWU4NGI3YTYyNDUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTU0NjAzMjAsImV4cCI6MTcxNTU0NjcyMH0.SyMfzmqKFzriurZRMjA4Je4cSlB9olJtCKPyTZTF-1A
+Authorization: Bearer {{tokenUser}}
 
 ### POST register commerce
 
@@ -136,13 +137,13 @@ Content-Type: application/json
 Authorization: Bearer {{tokenAdmin}}
 
 {
-    "email": "info@mercadona.es",
-    "password": "mercadona12345",
-    "name": "Mercadona",
-    "description": "Supermercado",
-    "address": "Valencia",
-    "cif": "A12345678",
-    "phone": "123456789"
+  "email": "info@mercadona.es",
+  "password": "mercadona12345",
+  "name": "Mercadona",
+  "description": "Supermercado",
+  "address": "Valencia",
+  "cif": "A12345678",
+  "phone": "123456789"
 }
 
 ### POST log in with commerce
@@ -151,8 +152,124 @@ POST http://localhost:3000/api/auth/login/commerce
 Content-Type: application/json
 
 {
-    "email": "info@mercadona.es",
-    "password": "mercadona12345"
+  "email": "info@mercadona.es",
+  "password": "mercadona12345"
 }
 
+### UPDATE commerce
 
+PUT http://localhost:3000/api/commerces/edit/66402d14a9992beff2760812
+Content-Type: application/json
+Authorization: Bearer {{tokenCommerce}}
+
+{
+  "email": "info@mercadona.es",
+  "password": "mercadona12345",
+  "name": "Mercadona",
+  "description": "Descripcion de Mercadona a secas to pocho to guapo",
+  "address": "Valencia",
+  "cif": "A12345678",
+  "phone": "123456788"
+}
+
+### GET commerces
+
+GET http://localhost:3000/api/commerces
+
+### GET commerce by id
+
+GET http://localhost:3000/api/commerces/66402d14a9992beff2760812
+
+###
+
+POST http://localhost:3000/api/auth/login/commerce
+Content-Type: application/json
+
+{
+  "email": "comercio@test.com",
+  "password": "comercio12345"
+}
+
+### DELETE commerce
+
+DELETE http://localhost:3000/api/commerces/delete/6642769c2385fcc100db0ebd
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQyNzY5YzIzODVmY2MxMDBkYjBlYmQiLCJjaWYiOiJBMTIzNDU2NzgiLCJpYXQiOjE3MTU2MzE4NTMsImV4cCI6MTcxNTcxODI1M30.rhm6Mak2UFskK7e3JBGNY_X8LCvKE3bttUP0ere7hSw
+
+### PATCH commerce
+
+PATCH http://localhost:3000/api/commerces/edit/66428af6afb83b6bc0954e6c
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQyOGFmNmFmYjgzYjZiYzA5NTRlNmMiLCJpYXQiOjE3MTU2MzY5ODIsImV4cCI6MTcxNTcyMzM4Mn0.zY4HrTCx8klxsYMMFkM6t9zBVtnm8vl33rZhoAZlJ4k
+
+{
+  "description": "comercio de ropa y complementos",
+  "address": "Malaga"
+}
+
+### GET pages
+
+GET http://localhost:3000/api/pages
+
+### GET page by id
+
+GET http://localhost:3000/api/pages/66402d14a9992beff2760812
+
+### POST page
+
+POST http://localhost:3000/api/pages/create
+Content-Type: application/json
+Authorization: Bearer {{tokenCommerce}}
+
+{
+  "city": "Valencia",
+  "title": "Page 1",
+  "description": "Description of page 1",
+  "activity": "sports"
+}
+
+### DELETE page
+
+DELETE http://localhost:3000/api/pages/delete/66402d14a9992beff2760812
+Authorization: Bearer {{tokenCommerce}}
+
+### PATCH page
+
+PATCH http://localhost:3000/api/pages/update/66402d14a9992beff2760812
+Content-Type: application/json
+Authorization: Bearer {{tokenCommerce}}
+
+{
+  "activity": "food",
+  "description": "Description of page 1 updated"
+}
+
+### PUT review
+
+PUT http://localhost:3000/api/pages/review/66402d14a9992beff2760812
+Content-Type: application/json
+Authorization: Bearer {{tokenUser}}
+
+{
+  "score": 5,
+  "review": "Great page"
+}
+
+### PUT photos
+
+PUT http://localhost:3000/api/pages/photos
+Content-Type: application/json
+Authorization: Bearer {{tokenCommerce}}
+
+{
+  "photo": "url of the photo 2"
+}
+
+### PUT texts
+
+PUT http://localhost:3000/api/pages/texts
+Content-Type: application/json
+Authorization: Bearer {{tokenCommerce}}
+
+{
+  "text": "text of the page 2"
+}

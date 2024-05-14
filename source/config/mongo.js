@@ -11,7 +11,7 @@ const dbConnect = () => {
         console.error("Error connecting to database: ", error)
     }
 
-    mongoose.connection.once("connected", () => console.log("Connected to the database"))
+    mongoose.connection.once("connected", () => console.log("[*] Connected to the database"))
 }
 
 module.exports = dbConnect

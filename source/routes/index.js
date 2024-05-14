@@ -10,7 +10,7 @@ fs.readdirSync(__dirname).filter((file) => {
     const name = removeExtension(file)
 
     if (name !== "index") {
-        console.log("Loading routes from " + name)
+        console.log(" -  Loading routes from " + name)
         router.use(`/${name}`, require(`./${name}`))
     }
 })

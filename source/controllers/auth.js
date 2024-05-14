@@ -109,7 +109,7 @@ const getUsers = async (req, res) => {
             data = data.filter(user => user.role === role)
         }
 
-        if (req.query.offers) {
+        if (req.query.offers == "true" || req.query.offers == "false") {
             const offer = req.query.offers
             data = data.filter(user => user.canReceiveOffers.toString() === offer)
         }
@@ -154,7 +154,11 @@ const updateUser = async (req, res) => {
             return
         }
 
-        req.password = await encrypt(req.password)
+        let body = req
+        if (req.password) {
+            req.password = await encrypt(req.password)
+            body = {...req, password: req.password}
+        }
 
         const data = await usersModel.findByIdAndUpdate(req.id, req)
 

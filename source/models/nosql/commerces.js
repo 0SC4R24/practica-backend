@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const mongooseDelete = require("mongoose-delete")
 
-const CommerceSheme = new mongoose.Schema(
+const CommerceScheme = new mongoose.Schema(
     {
         email: {
             type: String,
@@ -39,5 +39,5 @@ const CommerceSheme = new mongoose.Schema(
     }
 )
 
-CommerceSheme.plugin(mongooseDelete, {overrideMethods: "all"})
-module.exports = mongoose.model("Commerce", CommerceSheme)
+CommerceScheme.plugin(mongooseDelete, {overrideMethods: "all"})
+module.exports = mongoose.model("Commerce", CommerceScheme)

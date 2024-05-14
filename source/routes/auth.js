@@ -22,7 +22,9 @@ const {
     validatorDelete
 } = require("../validators/auth")
 
-const authMiddleware = require("../middleware/session")
+const {
+    authMiddleware
+} = require("../middleware/session")
 const checkRole = require("../middleware/role")
 
 router.post("/register/user", validatorRegister, registerCtrl)
@@ -32,10 +34,11 @@ router.post("/login", validatorLogin, loginCtrl)
 router.post("/login/commerce", validatorLogin, loginCommerce)
 
 router.put("/user/:id", authMiddleware, checkRole(["admin", "user"]), validatorUpdate, updateUser)
-
-router.delete("/user/:id", authMiddleware, checkRole(["admin", "user"]), validatorDelete, deleteUser)
+router.patch("/user/:id", authMiddleware, checkRole(["admin", "user"]), validatorUpdate, updateUser)
 
 router.get("/users", validatorGetUsers, getUsers)
 router.get("/user/:id", validatorGetUser, getUser)
+
+router.delete("/user/:id", authMiddleware, checkRole(["admin", "user"]), validatorDelete, deleteUser)
 
 module.exports = router
