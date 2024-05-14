@@ -273,3 +273,26 @@ Authorization: Bearer {{tokenCommerce}}
 {
   "text": "text of the page 2"
 }
+
+### GET images
+
+GET http://localhost:3000/api/storage
+
+### POST image
+
+POST http://localhost:3000/api/storage/post/image
+Content-Type: multipart/form-data; boundary=Boundry
+Authorization: Bearer {{tokenUser}}
+
+--Boundry
+Content-Disposition: form-data; name="image"; filename="image.jpg"
+Content-Type: image/jpeg
+
+< ./image.jpg
+--Boundry
+
+### DELETE image
+
+DELETE http://localhost:3000/api/storage/delete/6643577dcd066ca02631c626
+Content-Type: application/json
+Authorization: {{tokenUser}}
