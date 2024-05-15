@@ -185,6 +185,24 @@ const options = {
                             }
                         }
                     }
+                },
+                storage: {
+                    type: 'object',
+                    required: ['url', 'filename'],
+                    properties: {
+                        id: {
+                            type: 'string',
+                            example: '123456789'
+                        },
+                        url: {
+                            type: 'string',
+                            example: 'http://localhost:3000/api/storage/123456789'
+                        },
+                        filename: {
+                            type: 'string',
+                            example: 'image.jpg'
+                        }
+                    }
                 }
             }
         }

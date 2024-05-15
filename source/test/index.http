@@ -1,6 +1,6 @@
-@tokenAdmin = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjM2NTM0ZWI2MjhjZjlmNjEwMzM2NjciLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTU2MjE0OTQsImV4cCI6MTcxNTcwNzg5NH0.AYloqxYfIm4-FhIjLdhsIPx4PgLeV-qlunkq0LwSm88
-@tokenCommerce = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQwMmQxNGE5OTkyYmVmZjI3NjA4MTIiLCJjaWYiOiJBMTIzNDU2NzgiLCJpYXQiOjE3MTU2MjE0NzIsImV4cCI6MTcxNTcwNzg3Mn0.7X8xdHrCHY_roQ9sl0h601zAgT05TFbUZC31tZT-cJc
-@tokenUser = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNjMjFkNzg3ZTdjMzVlYTViMmM1ZmMiLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNTYyMTU1MywiZXhwIjoxNzE1NzA3OTUzfQ.1l8fGjiDtDEH1vV81Uo13FHaGS76MxZywNNEfAGFEVA
+@tokenAdmin = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjM2NTM0ZWI2MjhjZjlmNjEwMzM2NjciLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTU3MTM1NzksImV4cCI6MTcxNTc5OTk3OX0.-Z33kX22ZhsgR3B2VXRe4ChUF1PYbyZgPrnzJJaHsxs
+@tokenCommerce = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQwMmQxNGE5OTkyYmVmZjI3NjA4MTIiLCJjaWYiOiJBMTIzNDU2NzgiLCJpYXQiOjE3MTU3MTM2NzMsImV4cCI6MTcxNTgwMDA3M30.XrrWM0LH_imMaiusZkqBPndubQKonOgdZBJupy7qp44
+@tokenUser = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNjMjFkNzg3ZTdjMzVlYTViMmM1ZmMiLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNTcxMzYzOCwiZXhwIjoxNzE1ODAwMDM4fQ.c8UvENB-FegNUFvbr7FrLiK_MOT27qPMcnByScvsNa4
 
 ### POST register user
 
@@ -278,6 +278,10 @@ Authorization: Bearer {{tokenCommerce}}
 
 GET http://localhost:3000/api/storage
 
+### GET image by id
+
+GET http://localhost:3000/api/storage/6643bc324f81dbd5cb5dc943
+
 ### POST image
 
 POST http://localhost:3000/api/storage/post/image
@@ -293,6 +297,6 @@ Content-Type: image/jpeg
 
 ### DELETE image
 
-DELETE http://localhost:3000/api/storage/delete/6643577dcd066ca02631c626
+DELETE http://localhost:3000/api/storage/delete/6643b8a0a5a19367ea3c5266
 Content-Type: application/json
 Authorization: {{tokenUser}}

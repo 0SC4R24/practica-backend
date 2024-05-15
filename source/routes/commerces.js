@@ -103,7 +103,36 @@ router.get('/:id', validatorGetCommerce, getCommerce)
  */
 router.patch('/edit/:id', authMiddleware, authMiddlewareCommerce, checkRole(['admin']), validatorUpdateCommerce, updateCommerce)
 
-
+/**
+ * @openapi
+ * /api/commerces/delete/{id}:
+ *  delete:
+ *    tags:
+ *    - Commerce
+ *    summary: Delete commerce by ID
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        description: Commerce ID
+ *        required: true
+ *        schema:
+ *          type: string
+ *          example: 66402d14a9992beff2760812
+ *    description: ''
+ *    responses:
+ *      200:
+ *          description: Commerce deleted
+ *      400:
+ *          description: Invalid ID supplied
+ *      401:
+ *          description: Not allowed
+ *      404:
+ *          description: Commerce not found
+ *      500:
+ *          description: Server error
+ *    security:
+ *    - bearerAuth: []
+ */
 router.delete('/delete/:id', authMiddleware, authMiddlewareCommerce, checkRole(['admin']), validatorDeleteCommerce, deleteCommerce)
 
 module.exports = router

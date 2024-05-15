@@ -2,10 +2,13 @@ const { storageModel } = require('../models')
 const { handleHttpError } = require('../utils/handleError')
 const { matchedData } = require('express-validator')
 
+require("dotenv").config()
+
 const fs = require("fs")
+const path = require("path")
 
 const PUBLIC_URL = process.env.PUBLIC_URL
-const MEDIA_PATH = __dirname + "/../storage"
+const MEDIA_PATH = __dirname + "/../storage/"
 
 const getItems = async (req, res) => {
     try {
@@ -33,7 +36,17 @@ const getItem = async (req, res) => {
             return
         }
 
-        res.send(data)
+        const imagePath = path.join(MEDIA_PATH, data.url.slice(PUBLIC_URL.length + '/storage/'.length, data.url.length))
+
+        if (!fs.existsSync(imagePath))
+        {
+            handleHttpError(res, "ERROR_FILE_NOT_FOUND", 404)
+            return
+        }
+
+        res.setHeader("Content-Type", "image/jpeg")
+
+        fs.createReadStream(imagePath).pipe(res)
     } catch(error){
         console.log("Error getItem: ", error)
         handleHttpError(res, "ERROR_GET_ITEM")
@@ -67,8 +80,7 @@ const createItem = async (req, res) => {
 const deleteItem = async (req, res) => {
     try{
         const {id} = matchedData(req)
-
-        console.log("req: ", req)
+        const user_id = req.user_id
 
         const dataFile = await storageModel.findById(id)
 
@@ -77,8 +89,6 @@ const deleteItem = async (req, res) => {
             return
         }
 
-        console.log("dataFile: ", dataFile)
-
         const dataDelete = await storageModel.deleteOne({_id: id})
 
         if (!dataDelete) {
@@ -86,7 +96,7 @@ const deleteItem = async (req, res) => {
             return
         }
 
-        const filePath = MEDIA_PATH + "/" + dataFile.filename
+        const filePath = MEDIA_PATH + user_id + "/" + dataFile.filename
 
         fs.unlinkSync(filePath)
 
