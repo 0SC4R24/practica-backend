@@ -160,7 +160,7 @@ const updateUser = async (req, res) => {
             body = {...req, password: req.password}
         }
 
-        const data = await usersModel.findByIdAndUpdate(req.id, req)
+        const data = await usersModel.findByIdAndUpdate(req.id, body)
 
         if (!data)
         {

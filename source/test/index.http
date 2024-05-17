@@ -1,6 +1,6 @@
-@tokenAdmin = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjM2NTM0ZWI2MjhjZjlmNjEwMzM2NjciLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTU3MTM1NzksImV4cCI6MTcxNTc5OTk3OX0.-Z33kX22ZhsgR3B2VXRe4ChUF1PYbyZgPrnzJJaHsxs
-@tokenCommerce = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQwMmQxNGE5OTkyYmVmZjI3NjA4MTIiLCJjaWYiOiJBMTIzNDU2NzgiLCJpYXQiOjE3MTU3MTM2NzMsImV4cCI6MTcxNTgwMDA3M30.XrrWM0LH_imMaiusZkqBPndubQKonOgdZBJupy7qp44
-@tokenUser = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNjMjFkNzg3ZTdjMzVlYTViMmM1ZmMiLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNTcxMzYzOCwiZXhwIjoxNzE1ODAwMDM4fQ.c8UvENB-FegNUFvbr7FrLiK_MOT27qPMcnByScvsNa4
+@tokenAdmin = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjM2NTM0ZWI2MjhjZjlmNjEwMzM2NjciLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTU5MzE0MDMsImV4cCI6MTcxNjAxNzgwM30.TZFwCAkQW9RhnAxXHhzDlDM5044VnDOBQxtwfV9rDpc
+@tokenCommerce = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQ3MmNhY2I5ZTc4NzA3MzhlNGM3MzIiLCJpYXQiOjE3MTU5NDA1MjQsImV4cCI6MTcxNjAyNjkyNH0.3zkXoLnFjYhQR9UxIso57eoIi0b1GpWTDtds1jcvfwg
+@tokenUser = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQ3MmU3ZmI5ZTc4NzA3MzhlNGM3NGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNTk0MDk5MSwiZXhwIjoxNzE2MDI3MzkxfQ.7OGPH_WjQCfqcwgm2rs8P9yiYMlDxjynjBLWWwD_GWQ
 
 ### POST register user
 
@@ -93,8 +93,20 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "aaa@test.com",
-  "password": "aaa12345"
+  "email": "user@mail.com",
+  "password": "user12345"
+}
+
+### UPDATE user
+
+PATCH http://localhost:3000/api/auth/user/66472e7fb9e7870738e4c74b
+Content-Type: application/json
+Authorization: Bearer {{tokenUser}}
+
+{
+  "name": "user24",
+  "city": "Barcelona",
+  "age": 28
 }
 
 ### UPDATE user
@@ -178,7 +190,7 @@ GET http://localhost:3000/api/commerces
 
 ### GET commerce by id
 
-GET http://localhost:3000/api/commerces/66402d14a9992beff2760812
+GET http://localhost:3000/api/commerces/664724bdbe02c7465efd98a6
 
 ###
 
@@ -208,11 +220,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQyOGFmN
 
 ### GET pages
 
-GET http://localhost:3000/api/pages
+GET http://localhost:3000/api/pages?scoring=true
 
 ### GET page by id
 
-GET http://localhost:3000/api/pages/66402d14a9992beff2760812
+GET http://localhost:3000/api/pages/66472cacb9e7870738e4c732
 
 ### POST page
 
@@ -234,7 +246,7 @@ Authorization: Bearer {{tokenCommerce}}
 
 ### PATCH page
 
-PATCH http://localhost:3000/api/pages/update/66402d14a9992beff2760812
+PATCH http://localhost:3000/api/pages/update/66472cf1b9e7870738e4c737
 Content-Type: application/json
 Authorization: Bearer {{tokenCommerce}}
 
@@ -245,13 +257,13 @@ Authorization: Bearer {{tokenCommerce}}
 
 ### PUT review
 
-PUT http://localhost:3000/api/pages/review/66402d14a9992beff2760812
+PUT http://localhost:3000/api/pages/review/66472cacb9e7870738e4c732
 Content-Type: application/json
 Authorization: Bearer {{tokenUser}}
 
 {
-  "score": 5,
-  "review": "Great page"
+  "score": 3,
+  "review": "Great"
 }
 
 ### PUT photos
@@ -297,6 +309,6 @@ Content-Type: image/jpeg
 
 ### DELETE image
 
-DELETE http://localhost:3000/api/storage/delete/6643b8a0a5a19367ea3c5266
+DELETE http://localhost:3000/api/storage/delete/6643bc324f81dbd5cb5dc943
 Content-Type: application/json
 Authorization: {{tokenUser}}

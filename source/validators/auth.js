@@ -57,10 +57,10 @@ const validatorUpdate = [
     check("email").optional().isEmail(),
     check("password").optional().isLength({min: 8, max: 64}),
     check("age").optional().isNumeric(),
-    check("city").optional,
+    check("city").optional(),
     check("interests").optional().isArray(),
     check("role").optional().isIn(["admin", "user"]),
-    check("avatar").optional,
+    check("avatar").optional(),
     check("canReceiveOffers").optional().isBoolean(),
     (req, res, next) => {
         return validateResults(req, res, next)
